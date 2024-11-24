@@ -12,7 +12,23 @@ class SPPKController extends Controller
         return view('main.main', ['trans' => $trans]);
     }
 
-    public function letsApriori() {
-        return view('main.main');
+    public function letsApriori(Request $request) {
+        $data = medicine::all();
+        $minSup -> $request['minSup'];
+        $minNcof -> $reques['minConf'];
+        return response()->json($data);
+    }
+
+    public function runApache() {
+        try {
+            $source = '"C:\Apache24\bin"';
+            $output = shell_exec("$source\httpd.exe");
+        
+        } catch(Exception $e) {
+            return response()->json([
+                'success' => false,
+                'error' => $e->getMessage()
+            ]);
+        }
     }
 }
